@@ -1,39 +1,26 @@
 ### Selection Sort #####
-# first element(fixed) is always compared against with diff elements
-# pass 1
-# 9,8,7,6,5,4,3 first compared with second element
-# 8,9,7,6,5,4,3 first compared with third element
-# 7,9,8,6,5,4,3 first compared with fourth element
-# 6,9,8,7,5,4,3 ...
-# 5,9,8,7,6,4,3
-# 4,9,8,7,6,5,3
-# 3,9,8,7,6,5,4
-# after whole loop the smallest element has come to the first place
-# pass2
-# 3,  8,9,7,6,5,4
-# 3,   7,9,8,6,5,4
-# 3,   6,9,8,7,5,4
-# 3,   5,9,8,7,6,4
-# 3,4,   9,8,7,6,5
-
-################
-def swap_list_elements(lst, i, j):
-    lst[i], lst[j] = lst[j], lst[i]
-
 # selection sort does not return list but sort the same list
+# 10,5,8,20,2,18
+# 2|,5,8,20,10,18 # min and 1st element swapped
+# 2,5|,8,20,10,18
+# 2,5,8,|20,10,18
+# 2,5,8,10|,20,18
+# 2,5,8,10,18|,20
+
 def selectionSort(lst):
-    first = 0
+    n = len(lst)
 
-    while first < len(lst) - 1:
-        for i in range(1+first, len(lst), 1):
-            if lst[first] > lst[i]:
-                swap_list_elements(lst, first, i)
+    for i in range(n - 1):
+        min_idx = i
+        for j in range(i + 1, n):
+            # find min. element in list
+            if lst[i] > lst[j]:
+                min_idx = j
 
-        #print(lst, lst[first], first)
-        first += 1
+        lst[i], lst[min_idx] = lst[min_idx], lst[i]
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     lst = [9, 8, 7, 6, 5, 4, 3]
     selectionSort(lst)
     print(lst)
-
